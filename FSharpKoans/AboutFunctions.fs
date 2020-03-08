@@ -104,8 +104,8 @@ module ``03: Putting the Function into Functional Programming`` =
     [<Test>]
     let ``14 'Multiple-argument' functions are one-input, one-output in disguise`` () =
       let i j k = j * k   //let i k j = j * k 
-      let j = 4         //let j = __4 
-      let k = 48         // let k = __12
+      let j = 1 *4         //let j = __4 
+      let k = j * 12        // let k = __12
       k |> should equal 48   // k |> should equal 48
 
     [<Test>]
@@ -230,8 +230,8 @@ module ``03: Putting the Function into Functional Programming`` =
         let a x = x * 2.5
         let b x = x = 7.5
         a |> should be ofType<float -> float>
-        b |> should be ofType<float -> float> // b |> should be ofType<FILL_ME_IN>
-        __ |> __ |> __ |> should equal true    //__ |> __ |> __ |> should equal true
+        b |> should be ofType<float -> bool> // b |> should be ofType<FILL_ME_IN>
+        3.0 |> a |> b |> should equal true    //__ |> __ |> __ |> should equal true
 
     (*
         The backwards-pipe operator takes:
@@ -387,9 +387,12 @@ module ``03: Putting the Function into Functional Programming`` =
         // Extending a bit more, what do you do when you want to apply a function,
         // but modify the result before you give it back?
         let f animal noise = animal + " says " + noise
-        let cows = f "de gorazu"   //let cows = __    // <-- multiple words on this line, or you may want to make this a multi-line thing.  You MUST use `f`.
+        let cows d = f "cow" (d + ", de gozaru")
+        
+        // <-- multiple words on this line, or you may want to make this a multi-line thing.  You MUST use `f`.
         cows "moo" |> should equal "cow says moo, de gozaru"
         cows "MOOooOO" |> should equal "cow says MOOooOO, de gozaru"
+
 
     [<Test>]
     let ``35 Getting closure`` () =

@@ -57,15 +57,18 @@ module ``04: Match expressions`` =
             | 19 -> "Smite"
             | y -> "Trite"
             | 213 -> "Light"
-        x |> should equal __  //x |> should equal __
-        y |> should equal __  // y |> should equal __
-        z |> should equal __
-        a |> should equal __
+        x |> should equal 213  //x |> should equal __
+        y |> should equal 19 // y |> should equal __
+        z |> should equal "Bite"
+        a |> should equal "Trite"
 
     [<Test>]
     let ``05 Using a mapping function`` () =
         let mapper = function
-            | _ -> __ // write the cases for this function!
+            | 3 -> "Joey" // write the cases for this function!
+            | 8 -> "Bingo"
+            | 11 -> "Kelvin"
+            | 15 -> "Kelvin"
         mapper 3 |> should equal "Joey"
         mapper 8 |> should equal "Bingo"
         mapper 11 |> should equal "Kelvin"
@@ -81,12 +84,12 @@ module ``04: Match expressions`` =
     let ``06 Using an OR-pattern`` () =
         let f input =
             match input with
-            | "wut" | "lol" -> "yolo"
+            | "wut" |"lol" -> "yolo"
             | "sunrise"
             | "sunset" -> "transition"
-            | FILL__ME_IN
-            | FILL__ME_IN
-            | FILL__ME_IN -> "failure"
+            | "Johnny Walker" 
+            | "Bell's" 
+            | "vodka"-> "failure"   // | FILL__ME_IN
             | _ -> "lolwut"
         f "lol" |> should equal "yolo"
         f "wut" |> should equal "yolo"
@@ -99,7 +102,7 @@ module ``04: Match expressions`` =
         let f input =
             match input with
             | 0,0 -> "Both 0"
-            | ___ | ___ -> sprintf "One 0, one %d" __
+            | a,0 | 0,a -> sprintf "One 0, one %d" a ///////
             | _ -> "No 0"
         f (3,0) |> should equal "One 0, one 3"
         f (0, 4) |> should equal "One 0, one 4"
